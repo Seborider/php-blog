@@ -52,11 +52,11 @@ include '../database.php'
 
     <div class="container">
 
-      <h1>Startseite    des Blogs</h1>
-      <p class="lead">Das hier ist die Startseite des Blogs.</p>
+      <h1>Sitemap des Blogs</h1>
+      <p class="lead">Das hier ist die Sitemap des Blogs.</p>
 
       <?php
-        $res = fetchPosts();
+          $res = fetchPosts();
       ?>
 
       <ul>
