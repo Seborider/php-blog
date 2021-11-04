@@ -12,7 +12,7 @@ $post = fetch_post($id);
     <h3 class="panel-title"><?php echo $post["title"]; ?></h3>
   </div>
   <div class="panel-body">
-   <?php echo $post["content"]; ?>
+   <?php echo nl2br($post["content"]); ?>
   </div>
  </div>
 
