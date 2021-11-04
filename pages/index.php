@@ -11,8 +11,8 @@
 <ul>
   <?php foreach ($res AS $row): ?>
     <li>
-      <a href="post.php?title=<?php echo $row["title"]; ?>">
-        <?php echo $row["title"]; ?>
+      <a href="post.php?id=<?php echo $row["id"]; ?>">
+        <?php echo $row["id"]; ?>
       </a>
     </li>
   <?php endforeach; ?>
