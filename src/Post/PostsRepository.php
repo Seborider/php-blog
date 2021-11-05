@@ -14,14 +14,18 @@ class PostsRepository
 
   function fetchPosts()
   {
-     return $this->pdo->query("SELECT * FROM `posts`");
+     $stmt = $this->pdo->query("SELECT * FROM `posts`");
+     $posts = $stmt->fetchAll(PDO::FETCH_CLASS, 'App\\Post\PostModel');
+     return $posts;
   }
 
   function fetchPost($id)
   {
     $stmt = $this->pdo->prepare("SELECT * FROM `posts` WHERE id = :id");
     $stmt->execute(['id' => $id]);
-    return $stmt->fetch();
+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\\Post\PostModel');
+    $post = $stmt->fetch(PDO::FETCH_CLASS);
+    return $post;
   }
 }
 
