@@ -1,10 +1,12 @@
-<?php include("../database.php"); ?>
+<?php include("../init.php"); ?>
 <?php include("elements/header.php"); ?>
 
 <h1>Post</h1>
+
 <?php
+$postsRepsitory = new App\Post\PostsRepository($pdo);
 $id = $_GET['id'];
-$post = fetch_post($id);
+$post = $postsRepsitory->fetchPost($id);
  ?>
 
  <div class="panel panel-default">
