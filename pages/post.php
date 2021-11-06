@@ -1,21 +1,7 @@
-<?php include("../init.php"); ?>
-<?php include("elements/header.php"); ?>
-
-<h1>Post</h1>
-
 <?php
-$postsRepsitory = $container->make("postsRepository");
-$id = $_GET['id'];
-$post = $postsRepsitory->fetchPost($id);
- ?>
+include("../init.php");
 
- <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><?php echo $post['title']; ?></h3>
-  </div>
-  <div class="panel-body">
-   <?php echo nl2br($post['content']); ?>
-  </div>
- </div>
-
-<?php include("elements/footer.php"); ?>
+$postsController = $container->make("postsController");
+$postsController->show();
+?>
+<?php
