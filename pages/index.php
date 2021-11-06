@@ -4,8 +4,14 @@
 <h1>Startseite des Blogs</h1>
 <p class="lead">Das hier ist die Startseite des Blogs.</p>
 
+
+
 <?php
-  $postsRepsitory = new App\Post\PostsRepository($pdo);
+
+// error_reporting(E_ALL); 
+// ini_set('display_errors', 1);
+
+  $postsRepsitory = $container->getPostsRepository();
   $res = $postsRepsitory->fetchPosts();
 ?>
 
