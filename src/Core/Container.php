@@ -6,6 +6,7 @@ use PDO;
 use Exception;
 use PDOException;
 use App\Post\PostsRepository;
+use App\User\CommentsRepository;
 use App\Post\PostsController;
 
 class Container
@@ -17,15 +18,19 @@ class Container
   public function __construct()
   {
     $this->receipts = [
-        'postsController' => function ()
+      'postsController' => function ()
         {
             return new PostsController(
                 $this->make('postsRepository')
             );
         },
-        
       'postsRepository' => function() {
         return new PostsRepository(
+          $this->make("pdo")
+        );
+      },
+      'commentsRepository' => function() {
+        return new CommentsRepository(
           $this->make("pdo")
         );
       },
@@ -58,36 +63,6 @@ class Container
 
     return $this->instances[$name];
   }
-
-  /*
-  private $pdo;
-  private $postsRepository;
-
-  public function getPdo()
-  {
-    if (!empty($this->pdo)) {
-      return $this->pdo;
-    }
-    $this->pdo = new PDO(
-      'mysql:host=localhost;dbname=blog;charset=utf8',
-      'blog',
-      'TX4LQBEzfZfVqnLV'
-    );
-    $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    return $this->pdo;
-  }
-
-  public function getPostsRepository()
-  {
-    if (!empty($this->postsRepository)) {
-      return $this->postsRepository;
-    }
-    $this->postsRepository = new PostsRepository(
-      $this->getPdo()
-    );
-    return $this->postsRepository;
-  }
-  */
 
 }
  ?>
