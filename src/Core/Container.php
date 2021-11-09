@@ -25,7 +25,8 @@ class Container
     $this->receipts = [
       'postsAdminController' => function() {
         return new PostsAdminController(
-          $this->make("postsRepository")
+          $this->make("postsRepository"),
+          $this->make("loginService"),
         );
       },
       'loginService' => function() {
