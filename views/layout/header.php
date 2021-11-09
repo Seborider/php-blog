@@ -40,6 +40,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="index">Home</a></li>
+            <li class="active"><a href="login">Login</a></li>
           </ul>
         </div>
       </div>
