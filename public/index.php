@@ -10,7 +10,8 @@ $routes = [
     "/index" => ["controller" => "postsController", "method" => "index"],
     "/post" => ["controller" => "postsController", "method" => "show"],
     "/login" => ["controller" => "loginController", "method" => "login"],
-    "/dashboard" => ["controller" => "loginController", "method" => "dashboard"]
+    "/dashboard" => ["controller" => "loginController", "method" => "dashboard"],
+    "/logout" => ["controller" => "loginController", "method" => "logout"]
 ];
 
 if (isset($routes[$pathInfo])) 
