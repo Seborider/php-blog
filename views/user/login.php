@@ -3,6 +3,12 @@
 <br />
 <br />
 
+<?php if (!empty($error)): ?>
+  <p> 
+    <?php echo $error; ?>
+  </p>
+<?php endif; ?>
+
 <form method="POST" method="login" class="form-horizontal">
   <div class="form-group">
     <label class="control-label col-md-3">
