@@ -9,6 +9,7 @@ use PDOException;
 use App\Post\PostsRepository;
 use App\Post\CommentsRepository;
 use App\Post\PostsController;
+use App\Post\PostsAdminController;
 use App\User\UsersRepository;
 use App\User\LoginController;
 use App\User\LoginService;
@@ -22,9 +23,14 @@ class Container
   public function __construct()
   {
     $this->receipts = [
+      'postsAdminController' => function() {
+        return new PostsAdminController(
+          $this->make("postsRepository")
+        );
+      },
       'loginService' => function() {
         return new LoginService(
-          $this->make('usersRepository'),
+          $this->make('usersRepository')
         );
       },
       'loginController' => function() {
@@ -86,3 +92,5 @@ class Container
 
 }
  ?>
+
+
