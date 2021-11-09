@@ -11,6 +11,7 @@ use App\Post\CommentsRepository;
 use App\Post\PostsController;
 use App\User\UsersRepository;
 use App\User\LoginController;
+use App\User\LoginService;
 
 class Container
 {
@@ -21,9 +22,14 @@ class Container
   public function __construct()
   {
     $this->receipts = [
+      'loginService' => function() {
+        return new LoginService(
+          $this->make('usersRepository'),
+        );
+      },
       'loginController' => function() {
         return new LoginController(
-          $this->make('usersRepository')
+          $this->make('loginService')
         );
       },
       'postsController' => function() {
