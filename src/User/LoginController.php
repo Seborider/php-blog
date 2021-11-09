@@ -8,16 +8,23 @@ class LoginController extends AbstractController
 {
     public function __construct(UsersRepository $usersRepository)
     {
+        $this->usersRepository = $usersRepository;
+    }
+       
+    public function dashboard()
+    {
         if (isset($_SESSION["login"])) {
             echo "User logged in!";
         } else {
-            echo "User not logged in!";
+            header("Location: login");
         }
     }
 
-    public function dashboard()
+    public function logout()
     {
-        $this->render('user/dashboard.php');
+       unset($_SESSION["login"]);
+       session_regenerate_id(true);
+       header("Location: login");
     }
 
     public function login()
@@ -33,8 +40,8 @@ class LoginController extends AbstractController
             if (password_verify($password, $user->password)) {
                 $_SESSION["login"] = $user->username;
                 session_regenerate_id(true);
-                echo "Login successful!";
-                die();
+                header("Location: dashboard");
+            return;
             } else {
                 $error = "Wrong password!";
             }
