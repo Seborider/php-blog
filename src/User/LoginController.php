@@ -8,7 +8,16 @@ class LoginController extends AbstractController
 {
     public function __construct(UsersRepository $usersRepository)
     {
-        $this->usersRepository = $usersRepository;
+        if (isset($_SESSION["login"])) {
+            echo "User logged in!";
+        } else {
+            echo "User not logged in!";
+        }
+    }
+
+    public function dashboard()
+    {
+        $this->render('user/dashboard.php');
     }
 
     public function login()
@@ -21,7 +30,9 @@ class LoginController extends AbstractController
         $user = $this->usersRepository->findByUsername($username);
 
         if (!empty($user)) {
-            if ($user->password == $password) {
+            if (password_verify($password, $user->password)) {
+                $_SESSION["login"] = $user->username;
+                session_regenerate_id(true);
                 echo "Login successful!";
                 die();
             } else {
